@@ -12,19 +12,19 @@ struct TICTACTOE
 	char cpu;
 };
 
-void initialize_board(char gameboard[3][3])
+void InitializeBoard(char gameboard[3][3])
 {
 	system("color 53");
 	for (int i = 0; i< 3; i++)
 	{
 		for (int j = 0; j< 3; j++)
 		{
-			gameboard[i][j] = '.';/**umplem toate cele 9 spatii din tabla de joc cu puncte**/
+			gameboard[i][j] = '.';
 		}
 	}
 }
 
-void print_board(char gameboard[3][3])
+void PrintBoard(char gameboard[3][3])
 {
 	for (int i = 0; i<3; i++)
 	{
@@ -32,7 +32,7 @@ void print_board(char gameboard[3][3])
 		for (int j = 0; j<3; j++)
 		{
 			cout << "  ";
-			cout << gameboard[i][j]; //imprimam tabla de joc
+			cout << gameboard[i][j]; 
 		}
 	}
 	cout << endl << endl;
@@ -42,6 +42,8 @@ int main()
 {
 
 	TICTACTOE game;
-	initialize_board(game.gameboard);
+	InitializeBoard(game.gameboard);
 	return 0;
 }
+
+
