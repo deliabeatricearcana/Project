@@ -102,3 +102,29 @@ char DetermineCpuChoice(char player1)
 
 	return cpu;
 }
+
+char CheckWin(char gameboard[3][3])
+{ /**verificam daca elementele de pe orizontala, verticala si diagonala sunt egale cu elementul de pe linia 0 si coloana 0**/
+
+	if (gameboard[0][0] != '.' &&
+     (gameboard[0][0] == gameboard[0][1] && gameboard[0][0] == gameboard[0][2] ||
+		gameboard[0][0] == gameboard[1][0] && gameboard[0][0] == gameboard[2][0] ||
+		gameboard[0][0] == gameboard[1][1] && gameboard[0][0] == gameboard[2][2]))
+
+		return gameboard[0][0];
+
+	if (gameboard[1][1] != '.' &&
+     (gameboard[1][1] == gameboard[1][0] && gameboard[1][1] == gameboard[1][2] ||
+		gameboard[1][1] == gameboard[0][1] && gameboard[1][1] == gameboard[2][1] ||
+		gameboard[1][1] == gameboard[2][0] && gameboard[1][1] == gameboard[0][2]))
+
+		return gameboard[1][1];
+
+	if (gameboard[2][2] != '.' &&
+     (gameboard[2][2] == gameboard[0][2] && gameboard[2][2] == gameboard[1][2] ||
+		gameboard[2][2] == gameboard[2][0] && gameboard[2][2] == gameboard[2][1]))
+
+		return gameboard[2][2];
+
+	return 0;
+}
