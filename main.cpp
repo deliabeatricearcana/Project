@@ -128,3 +128,44 @@ char CheckWin(char gameboard[3][3])
 
 	return 0;
 }
+
+
+
+void PlayerPlacement(char gameboard[3][3], char player)
+{
+
+	while (1)
+        {/**Aceste instructiuni se vor executa repetat pana cand 1 va fi gasit ca fiind egal cu 0
+            dar bineinteles ca 1 nu va fi niciodata egal cu 0, deci bucla se va repeta la infinit**/
+		string stringrow, stringcol;
+		int row= 0, col= 0;
+		while (1)
+		 {
+			cout<< "Where would you like to play? " <<endl <<"Enter the row: ";
+			cin >> stringrow;
+			row = atoi(stringrow.c_str());
+
+			if (row>=1 && row<=3)
+				break;
+			cout << "You need to enter a row on the board (between 1 and 3, inclusive)." << endl;
+		}
+
+		while (1)
+		 {
+			cout<< "Enter the column: ";
+			cin>> stringcol;
+			col= atoi(stringcol.c_str());
+
+			if (col>= 1 && col<= 3)
+				break;
+			cout << "You need to enter a column on the board (between 1 and 3, inclusive)." << endl;
+		}
+		if (gameboard[row-1][col-1]== '.')
+        {
+			gameboard[row-1][col-1]= player;
+			break;
+		}
+		else
+			cout << "Someone already played there." << endl << endl;
+	}
+}
