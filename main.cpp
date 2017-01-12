@@ -23,3 +23,18 @@ system("color 30");
 		}
 	}
 }
+
+
+void PrintBoard(char gameboard[3][3])
+{
+	for(int i=0;i<3;i++)
+        {
+		cout << endl;
+		for (int j=0;j<3; j++)
+		 {
+			cout << "  ";
+			cout << gameboard[i][j];
+		}
+	}
+	cout << endl << endl;
+}
