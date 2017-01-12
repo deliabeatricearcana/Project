@@ -65,3 +65,40 @@ bool Question() {
 	}
 }
 
+char DeterminePlayerChoice (string s)
+{
+
+	while (1)
+    {
+    string name;
+    cout<<"Player's name:"<<" ";
+    cin>>name;
+    s=name;
+    string choice;
+    cout<<s <<",what would you like your character to be? ";
+    cin >> choice;
+		if (choice.size() > 1) {
+			cout << "You inputted more than one character. Please try again." << endl;
+			continue;
+		}
+		cout << endl;
+		return choice[0];
+	}
+}
+
+char DetermineCpuChoice(char player1)
+{
+
+	char cpu;
+	cout<< "Hello, I am the computer you will be playing." << endl;
+	cout<< "If you chose x's, I will be o's. If you chose o's, I will be x's." << endl;
+	cout<< "If you chose neither x or o, I will default to x." << endl << endl;
+
+	if (player1== 'x'|| player1== 'X')
+		cpu= 'o';
+
+	else
+		cpu= 'x';
+
+	return cpu;
+}
