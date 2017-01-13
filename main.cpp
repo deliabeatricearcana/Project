@@ -211,3 +211,28 @@ int BestMove(char gameboard[3][3], char player1, char player2)
 atunci mutarile sunt din ce in ce mai nefavorabile cu cat jocul se apropie de final**/
 }
 
+int PickBestMove(char gameboard[3][3],char player1,char player2)
+{
+	int bestmovescore= -9999;
+	int bestmoverow= -9999;
+	int bestmovecol= -9999;
+	int scoreforthismove= 0;
+
+	for(int r=0;r<3;r++)
+        {
+		for (int c=0; c<3; c++) {
+			if (gameboard[r][c] == '.')
+                {
+				gameboard[r][c] = player1;
+				scoreforthismove = -(BestMove(gameboard, player2, player1));
+				gameboard[r][c] = '.';
+				if (scoreforthismove >= bestmovescore) {
+					bestmovescore = scoreforthismove;
+					bestmoverow = r;
+					bestmovecol = c;
+				}
+			}
+		}
+	}
+	return (10*bestmoverow + bestmovecol);
+}
