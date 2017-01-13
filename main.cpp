@@ -169,3 +169,45 @@ void PlayerPlacement(char gameboard[3][3], char player)
 			cout << "Someone already played there." << endl << endl;
 	}
 }
+
+int BestMove(char gameboard[3][3], char player1, char player2)
+ {
+
+	int bestmovescore = -9999;
+	int scoreforthismove = 0;
+
+	if (CheckWin(gameboard) == player1)
+		return 1000;
+
+	else if (CheckWin(gameboard) == player2)
+		return -1000;
+
+	for (int r=0;r<3; r++)
+        {
+		for (int c= 0; c< 3; c++)
+		 {
+			if (gameboard[r][c] == '.')
+			{
+				gameboard[r][c]= player1;
+				scoreforthismove= -(BestMove(gameboard, player2, player1));
+				gameboard[r][c]= '.';
+				if (scoreforthismove>=bestmovescore)
+				 {
+					bestmovescore= scoreforthismove;
+				}
+			}
+		}
+	}
+
+	if (bestmovescore== -9999 || bestmovescore== 0)
+		return 0;
+
+	else if(bestmovescore<0)
+		return bestmovescore+1;
+
+	else if(bestmovescore>0)
+		return bestmovescore-1;
+/**Atata timp cat jocul se lungeste si recursia este cat mai complexa,
+atunci mutarile sunt din ce in ce mai nefavorabile cu cat jocul se apropie de final**/
+}
+
