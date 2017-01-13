@@ -269,3 +269,21 @@ void PlayGameSinglePlayer (char gameboard[3][3], char player1, char cpu)
 	}
 	cout << "IT'S A DRAW!" << endl;
 }
+
+void PlayGameMultiplayer (char gameboard[3][3], char player1, char player2)
+{
+
+	for(int index=0; index < 9; index++)
+        {
+		PlayerPlacement(gameboard,(index & 1)? player1 : player2);
+		PrintBoard(gameboard);
+		char winner = CheckWin(gameboard);
+		if (winner)
+		{
+			cout << winner << " WON!" << endl;
+			exit(0); /**indica terminarea cu succes a functiei**/
+		}
+	}
+	cout << "IT'S A DRAW!" << endl;
+}
+
