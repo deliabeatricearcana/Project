@@ -281,9 +281,43 @@ void PlayGameMultiplayer (char gameboard[3][3], char player1, char player2)
 		if (winner)
 		{
 			cout << winner << " WON!" << endl;
-			exit(0); /**indica terminarea cu succes a functiei**/
+			exit(0);
 		}
 	}
 	cout << "IT'S A DRAW!" << endl;
 }
 
+
+int main()
+{
+
+	TICTACTOE game;
+	InitializeBoard(game.gameboard);
+
+	bool twoplayer = Question();
+
+	if (twoplayer == false)
+        {
+		game.player1 = DeterminePlayerChoice("Player 1");
+		game.cpu = DetermineCpuChoice(game.player1);
+		PrintBoard(game.gameboard);
+		PlayGameSinglePlayer(game.gameboard, game.player1, game.cpu);
+	}
+
+	else if (twoplayer == true)
+        {
+		game.player1 = DeterminePlayerChoice("Player 1");
+
+		while (1)
+            {
+			game.player2 = DeterminePlayerChoice("Player 2");
+			if (game.player2 != game.player1)
+				break;
+			else
+				cout << "You entered the same character as Player 1. Please select a different character." << endl;
+		}
+		PrintBoard(game.gameboard);
+		PlayGameMultiplayer(game.gameboard, game.player1, game.player2);
+	}
+	return 0;
+}
