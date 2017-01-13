@@ -236,3 +236,36 @@ int PickBestMove(char gameboard[3][3],char player1,char player2)
 	}
 	return (10*bestmoverow + bestmovecol);
 }
+
+void PlayGameSinglePlayer (char gameboard[3][3], char player1, char cpu)
+{
+
+	int moves = 0;
+	while (moves < 9)
+        {
+		PlayerPlacement(gameboard, player1);
+		moves++;
+		PrintBoard(gameboard);
+		if (CheckWin(gameboard))
+		 {
+			cout << player1 << " WON!" <<endl;
+			exit(1);
+		}
+		if (moves == 9)
+			break;
+		int wheretomove = PickBestMove(gameboard, cpu, player1);/**folosim functia pentru a gasi cea mai buna mutare posibila**/
+		int row = wheretomove / 10; /**gasim cea mai favorabila alegere a liniei**/
+		int col = wheretomove % 10;/**gasim cea mai favorabila alegere a coloanei**/
+		gameboard[row][col] = cpu;/**celei mai favorabile pozitii ii corespunde cpu**/
+		moves++;
+		PrintBoard(gameboard);
+		if (CheckWin(gameboard))
+		 {
+			cout << cpu << " WON!" <<endl;
+			cout << "If I were you, I would've played at: " << "(row " << wheretomove/10 + 1 << ", col " << wheretomove % 10 + 1 << ")" << endl;
+		/**se genereaza pozitiile cele mai favorabile in caz ca va fi castigator computerul**/
+			exit(2); /**opreste programul**/
+		}
+	}
+	cout << "IT'S A DRAW!" << endl;
+}
